@@ -31,4 +31,8 @@ def download_video(url: str, outpath: str = "./assets") -> None:
     yt = YouTube(url, on_progress_callback=on_progress)
     
     # Video as a streams.Stream object
-    video = yt.streams.filter(file_extension="mp4", resolution=(get_resolution(yt)[0] + "p")).first().download(outpath)
+    yt.streams.filter(file_extension="mp4", resolution=(get_resolution(yt)[0] + "p"), only_video=True).first().download(outpath)
+
+
+url1 = "https://www.youtube.com/watch?v=nD6qsOPTaKQ"
+download_video(url1)
